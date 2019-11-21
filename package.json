@@ -2,6 +2,7 @@
   "name": "react-datasheet",
   "version": "1.4.0",
   "description": "Excel-like data grid for React",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/nadbm/react-datasheet.git"
@@ -65,7 +66,9 @@
     "react-dom": ">=16",
     "prop-types": ">=16"
   },
-  "dependencies": {},
+  "dependencies": {
+    "babel": "^6.23.0"
+  },
   "files": [
     "lib",
     "types"

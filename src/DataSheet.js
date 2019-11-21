@@ -134,7 +134,7 @@ export default class DataSheet extends PureComponent {
   handleCopy (e) {
     if (isEmpty(this.state.editing)) {
       e.preventDefault()
-      const {dataRenderer, valueRenderer, data} = this.props
+      const {dataRenderer, copyRenderer, data} = this.props
       const {start, end} = this.getState()
 
       const text = range(start.i, end.i).map((i) =>
@@ -142,7 +142,7 @@ export default class DataSheet extends PureComponent {
           const cell = data[i][j]
           const value = dataRenderer ? dataRenderer(cell, i, j) : null
           if (value === '' || value === null || typeof (value) === 'undefined') {
-            return valueRenderer(cell, i, j)
+            return copyRenderer(cell, i, j)
           }
           return value
         }).join('\t')
@@ -492,7 +492,7 @@ export default class DataSheet extends PureComponent {
 
   render () {
     const {sheetRenderer: SheetRenderer, rowRenderer: RowRenderer, cellRenderer,
-      dataRenderer, valueRenderer, dataEditor, valueViewer, attributesRenderer,
+      dataRenderer, valueRenderer, copyRenderer, dataEditor, valueViewer, attributesRenderer,
       className, overflow, data, keyFn} = this.props
     const {forceEdit} = this.state
 
@@ -558,6 +558,7 @@ DataSheet.propTypes = {
     })
   }),
   valueRenderer: PropTypes.func.isRequired,
+  copyRenderer: PropTypes.func.isRequired,
   dataRenderer: PropTypes.func,
   sheetRenderer: PropTypes.func.isRequired,
   rowRenderer: PropTypes.func.isRequired,
